@@ -1,6 +1,7 @@
 @echo off
 setlocal EnableDelayedExpansion
 
+set DEPOT_TOOLS_WIN_TOOLCHAIN=0
 set PATH=%PATH%;%CD%\depot_tools
 
 set platform=%1

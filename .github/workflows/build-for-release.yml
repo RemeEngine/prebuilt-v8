@@ -16,8 +16,8 @@ jobs:
             build_script: ./scripts/build-v8.sh
           - os: macos-latest
             build_script: ./scripts/build-v8.sh
-          - os: windows-latest
-            build_script: ./scripts/build-v8.bat
+          # - os: windows-latest
+          #   build_script: ./scripts/build-v8.bat
 
     runs-on: "${{ matrix.os }}"
     steps:

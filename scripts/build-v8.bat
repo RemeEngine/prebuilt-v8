@@ -37,16 +37,16 @@ rmdir /s /q build
 md build
 
 @REM Prepare solution
-call .\scripts\gclient-sync.bat
+call gclient sync -R -D --revision=%version% --spec="%spec%"
 
 @REM Generate build config
 cd v8
-gn gen ..\build --args="%build_args%"
+call gn gen ..\build --args="%build_args%"
 cd ..
 
 @REM Build V8
 cd v8
-ninja -v -C ..\build v8_monolith
+call ninja -v -C ..\build v8_monolith
 cd ..
 
 @REM Create package

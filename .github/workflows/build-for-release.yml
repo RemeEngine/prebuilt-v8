@@ -1,0 +1,48 @@
+name: Build for Release
+
+on:
+  release:
+    types:
+      - created
+
+jobs:
+  release:
+    name: Build V8 for release using ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        include:
+          - os: ubuntu-latest
+            build_script: ./scripts/build-v8.sh
+          - os: macos-latest
+            build_script: ./scripts/build-v8.sh
+          - os: windows-latest
+            build_script: ./scripts/build-v8.bat
+
+    runs-on: "${{ matrix.os }}"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+        with:
+          fetch-depth: 1
+          submodules: true
+
+      - name: Build V8
+        id: build
+        run: ${{ matrix.build_script }} ${{ runner.os }} ${{ github.event.release.tag_name }}
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: "${{ steps.build.outputs.package }}"
+          path: package
+
+      - name: Upload release asset
+        uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: "${{ secrets.BOT_GITHUB_TOKEN }}"
+        with:
+          upload_url: "${{ github.event.release.upload_url }}"
+          asset_path: "${{ steps.build.outputs.package_path }}"
+          asset_name: "${{ steps.build.outputs.package }}.tar.gz"
+          asset_content_type: application/gzip

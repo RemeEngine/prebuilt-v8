@@ -1,0 +1,28 @@
+name: Create Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  create-release:
+    name: Create Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@master
+
+      - name: Compute release body
+        id: release_body
+        run: ./scripts/compute-release-body.js ${{ github.ref }}
+        
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: "${{ secrets.BOT_GITHUB_TOKEN }}"
+        with:
+          tag_name: "${{ github.ref }}"
+          release_name: V8 ${{ github.ref }}
+          body: "${{ steps.release_body.outputs.release_body }}"

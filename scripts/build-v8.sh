@@ -12,6 +12,11 @@ spec="${spec//$'\n'/}"
 build_args=`cat ./build_args.cfg`
 build_args="${build_args//$'\n'/ }"
 
+echo "platform: $platform"
+echo "version: $version"
+# echo $spec
+# echo $build_args
+
 # Resolve platform name
 case $platform in
   Linux)

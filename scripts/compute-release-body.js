@@ -13,6 +13,7 @@ const body = `Packages for V8 ${version}:
 
 - [v8-${version}-darwin.tar.gz](https://github.com/RemeEngine/prebuilt-v8/releases/download/${version}/v8-${version}-darwin.tar.gz)
 - [v8-${version}-linux.tar.gz](https://github.com/RemeEngine/prebuilt-v8/releases/download/${version}/v8-${version}-linux.tar.gz)
+- [v8-${version}-win64.tar.gz](https://github.com/RemeEngine/prebuilt-v8/releases/download/${version}/v8-${version}-win64.tar.gz)
 
 `.trim();
 

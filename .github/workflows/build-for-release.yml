@@ -12,14 +12,11 @@ jobs:
       matrix:
         include:
           # - os: ubuntu-latest
-          #   shell: bash
           #   build_script: ./scripts/build-v8.sh
           # - os: macos-latest
-          #   shell: bash
           #   build_script: ./scripts/build-v8.sh
           - os: windows-latest
-            shell: cmd
-            build_script: .\scripts\build-v8.bat
+            build_script: cmd.exe /C .\scripts\build-v8.bat
 
     runs-on: "${{ matrix.os }}"
     steps:
@@ -31,7 +28,6 @@ jobs:
 
       - name: Build V8
         id: build
-        shell: ${{ matrix.shell }}
         run: ${{ matrix.build_script }} ${{ runner.os }} ${{ github.event.release.tag_name }}
 
       - name: Upload artifact

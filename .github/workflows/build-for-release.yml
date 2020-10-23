@@ -16,8 +16,6 @@ jobs:
             build_script: ./scripts/build-v8.sh
           - os: macos-latest
             build_script: ./scripts/build-v8.sh
-          # - os: windows-latest
-          #   build_script: ./scripts/build-v8.bat
 
     runs-on: "${{ matrix.os }}"
     steps:
@@ -32,13 +30,13 @@ jobs:
         run: ${{ matrix.build_script }} ${{ runner.os }} ${{ github.event.release.tag_name }}
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v2
         with:
           name: "${{ steps.build.outputs.package }}"
           path: package
 
       - name: Upload release asset
-        uses: actions/upload-release-asset@v1.0.1
+        uses: actions/upload-release-asset@v1.0.2
         env:
           GITHUB_TOKEN: "${{ secrets.BOT_GITHUB_TOKEN }}"
         with:

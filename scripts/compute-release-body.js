@@ -4,7 +4,6 @@ function escape(s) {
   return s
     .replace(/\r/g, "%0D")
     .replace(/\n/g, "%0A")
-    .replace(/]/g, "%5D")
     .replace(/;/g, "%3B");
 }
 

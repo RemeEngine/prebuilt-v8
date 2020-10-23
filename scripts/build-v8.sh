@@ -90,13 +90,13 @@ cd ..
 
 # Build V8
 cd v8
-ninja -v -C ../build v8_monolith
+# ninja -v -C ../build v8_monolith
 cd ..
 
 # Create package
 rm -rf package
 mkdir package
-cp build/obj/libv8_monolith.a package/libv8.a
+# cp build/obj/libv8_monolith.a package/libv8.a
 cp -r v8/include package/include
 tar czf build/v8-v$version-$platform.tar.gz -C package .
 

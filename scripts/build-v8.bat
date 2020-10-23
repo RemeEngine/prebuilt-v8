@@ -1,4 +1,4 @@
-@echo off
+@echo on
 setlocal EnableDelayedExpansion
 
 set DEPOT_TOOLS_WIN_TOOLCHAIN=0

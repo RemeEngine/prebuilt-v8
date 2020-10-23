@@ -1,8 +1,8 @@
-@echo on
+@echo off
 setlocal EnableDelayedExpansion
 
 set DEPOT_TOOLS_WIN_TOOLCHAIN=0
-set PATH=%PATH%;%CD%\depot_tools
+set PATH=%CD%\depot_tools;%PATH%
 
 set platform=%1
 set version=%2
@@ -37,7 +37,7 @@ rmdir /s /q build
 md build
 
 @REM Prepare solution
-gclient sync -R -D --revision %version% --spec "%spec%"
+call .\scripts\gclient-sync.bat
 
 @REM Generate build config
 cd v8

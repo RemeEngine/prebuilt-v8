@@ -1,7 +1,11 @@
+target_os="ios"
+target_cpu="arm64"
+use_xcode_clang=true
+enable_ios_bitcode=true
+ios_deployment_target=10
 clang_use_chrome_plugins=false
 is_component_build=false
 is_debug=false
-linux_use_bundled_binutils=false
 strip_debug_info=true
 symbol_level=0
 treat_warnings_as_errors=false

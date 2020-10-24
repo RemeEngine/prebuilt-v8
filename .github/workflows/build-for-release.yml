@@ -7,15 +7,24 @@ on:
 
 jobs:
   release:
-    name: Build V8 for release using ${{ matrix.os }}
+    name: Build V8 using ${{ matrix.os }}
     strategy:
       matrix:
         include:
           - os: ubuntu-latest
+            platform: linux
             build_script: ./scripts/build-v8.sh
           - os: macos-latest
+            platform: mac
+            build_script: ./scripts/build-v8.sh
+          - os: ubuntu-latest
+            platform: android
+            build_script: ./scripts/build-v8.sh
+          - os: macos-latest
+            platform: ios
             build_script: ./scripts/build-v8.sh
           - os: windows-latest
+            platform: win
             build_script: cmd.exe /C .\scripts\build-v8.bat
 
     runs-on: "${{ matrix.os }}"
@@ -28,7 +37,7 @@ jobs:
 
       - name: Build V8
         id: build
-        run: ${{ matrix.build_script }} ${{ runner.os }} ${{ github.event.release.tag_name }}
+        run: ${{ matrix.build_script }} ${{ matrix.platform }} ${{ github.event.release.tag_name }}
 
       - name: Upload artifact
         uses: actions/upload-artifact@v2

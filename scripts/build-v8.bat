@@ -2,6 +2,8 @@
 setlocal EnableDelayedExpansion
 
 set DEPOT_TOOLS_WIN_TOOLCHAIN=0
+set GYP_MSVS_VERSION=2019
+
 set PATH=%CD%\depot_tools;%PATH%
 
 set platform=%1

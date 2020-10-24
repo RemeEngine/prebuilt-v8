@@ -55,7 +55,7 @@ cd ..
 del /f /s /q package 1>nul
 rmdir /s /q package
 md package
-copy build\obj\libv8_monolith.lib package\libv8.lib
+copy build\obj\v8_monolith.lib package\v8.lib
 xcopy v8\include package\include /E /I
 tar czf build/v8-v%version%-%platform%.tar.gz -C package .
 
